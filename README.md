@@ -1,2 +1,2 @@
 # PD-Numerik
-isi berkasi
+isi berkas
