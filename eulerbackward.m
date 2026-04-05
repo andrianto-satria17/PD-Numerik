@@ -1,7 +1,7 @@
 % 1. Definisi Parameter
 h = 0.1;  % Step size
 t_start = 0;
-t_end = 4;
+t_end = 20;
 I0 = 0;
 
 % Solusi Eksak/Analitik
@@ -20,7 +20,7 @@ I_implicit(1) = I0;
 
 % 3. Proses Hitung & Tabel
 % Header Tabel
-fprintf('%3s | %4s | %15s | %15s | %15s\n', 'n', 't', 'Euler Implisit', 'Eksak', 'Error');
+fprintf('%3s | %4s | %15s | %15s | %15s\n', 'n', 't', 'I_implisit', 'I_exact', 'Abs Error');
 fprintf('%s\n', repmat('-', 1, 64));
 
 % Baris pertama (Kondisi Awal t=0)
@@ -55,9 +55,25 @@ plot(t_values, I_exact, 'Color', [0.7 0.7 0.7], 'LineWidth', 4);
 plot(t_values, I_implicit, 'r-o', 'MarkerSize', 5, 'LineWidth', 1.5);
 
 % Dekorasi Grafik
-title('Metode Euler Implisit (Backward Euler)', 'FontSize', 14);
+title('Metode Euler Implisit (Euler Implisit)', 'FontSize', 14);
 xlabel('Waktu (t)', 'FontSize', 12);
 ylabel('Arus (I)', 'FontSize', 12);
-legend('Solusi Eksak', 'Metode Euler Implisit', 'Location', 'best');   %menuliskan legenda/petunjuk
+legend('I(solusi eksak)', 'I(euler implisit)', 'Location', 'best');   %menuliskan legenda/petunjuk
 grid on;
 hold off;
+
+% --- TAMBAHAN: VISUALISASI GRAFIK ERROR --- tidak wajib masuk dokumen
+% Membuat jendela grafik baru (Figure 2) khusus untuk error
+figure('Position', [150, 150, 800, 400]);
+
+% Menghitung seluruh error sekaligus (menggunakan I_implicit)
+error_array = abs(I_exact - I_implicit);
+
+% Plot grafik error
+plot(t_values, error_array, 'm-o', 'LineWidth', 1.5, 'MarkerSize', 4);
+
+% Dekorasi Grafik Error
+title('Grafik Error Absolut (Euler Implisit)', 'FontSize', 14);
+xlabel('Waktu (t)', 'FontSize', 12);
+ylabel('Nilai Error Absolut', 'FontSize', 12);
+grid on;
