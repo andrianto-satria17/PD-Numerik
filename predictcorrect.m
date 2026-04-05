@@ -63,21 +63,21 @@ figure('Position', [100, 100, 800, 500]); % Membuat jendela grafik
 hold on; % Agar plot ditumpuk di satu grafik yang sama
 
 % A. Plot Solusi Eksak (Garis tebal abu-abu/hitam transparan)
-% Di Octave, kita gunakan warna abu-abu (RGB: [0.7 0.7 0.7]) agar menyerupai 'alpha' di Python
-plot(t_values, I_exact, 'Color', [0.7 0.7 0.7], 'LineWidth', 4, 'DisplayName', 'Solusi Eksak/I\_exact');
+plot(t_values, I_exact, 'Color', [0.7 0.7 0.7], 'LineWidth', 4);
 
 % B. Plot Predictor (Garis putus-putus merah dengan marker bundar)
-plot(t_values, I_predict_list, 'r--o', 'MarkerSize', 4, 'LineWidth', 1, 'DisplayName', 'I\_predictor');
+plot(t_values, I_predict_list, 'r--o', 'MarkerSize', 4, 'LineWidth', 1);
 
 % C. Plot Corrector (Garis biru solid dengan marker persegi)
-plot(t_values, I_numeric, 'b-s', 'MarkerSize', 5, 'LineWidth', 1.5, 'DisplayName', 'I\_corrector');
+plot(t_values, I_numeric, 'b-s', 'MarkerSize', 5, 'LineWidth', 1.5);
 
 % Dekorasi Grafik
 title('Perbandingan solusi eksak, predictor, korektor', 'FontSize', 14);
 xlabel('Waktu (t)', 'FontSize', 12);
 ylabel('Arus (I)', 'FontSize', 12);
+ylim([0, 2.5]); % Mengatur batas sumbu Y dari 0 sampai 3
 
-% Legenda dan Grid
-legend('show', 'Location', 'best');
+% Legenda
+legend('Solusi Eksak', 'Predictor', 'Corrector', 'Location', 'best');
 grid on;
 hold off;
