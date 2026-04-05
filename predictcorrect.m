@@ -7,9 +7,6 @@ t_start = 0;
 t_end = 20;
 I0 = 0;
 
-% Fungsi f(t, I) menggunakan "Anonymous Function" di Octave/MATLAB
-f = @(t, I) 20 * exp(-4 * t) - 5 * I;
-
 % Solusi Eksak/Analitik
 exact_solution = @(t) 20 * (exp(-4 * t) - exp(-5 * t));
 
