@@ -4,7 +4,7 @@ L = 2;
 E0 = 40;
 h = 0.1;  % Step size
 t_start = 0;
-t_end = 4;
+t_end = 20;
 I0 = 0;
 
 % Fungsi f(t, I) menggunakan "Anonymous Function" di Octave/MATLAB
@@ -28,7 +28,7 @@ I_predict_list(1) = I0;
 
 % 3. Proses Hitung & Tabel
 % Header Tabel
-fprintf('%3s | %4s | %15s | %15s | %15s | %15s\n', 'n', 't', 'Predictor (I*)', 'Corrector (I)', 'Eksak', 'Error');
+fprintf('%3s | %4s | %15s | %15s | %15s | %15s\n', 'n', 't', 'Predictor (I*)', 'Corrector (I)', 'I_Eksak', 'Abs Error');
 fprintf('%s\n', repmat('-', 1, 81));
 
 % Baris pertama (Kondisi Awal t=0)
@@ -78,6 +78,22 @@ ylabel('Arus (I)', 'FontSize', 12);
 ylim([0, 2.5]); % Mengatur batas sumbu Y dari 0 sampai 3
 
 % Legenda
-legend('Solusi Eksak', 'Predictor', 'Corrector', 'Location', 'best');
+legend('I(solusi eksak)', 'I(predictor)', 'I(corrector)', 'Location', 'best');
 grid on;
 hold off;
+
+% --- TAMBAHAN: VISUALISASI GRAFIK ERROR --- tidak wajib masuk dokumen
+% Membuat jendela grafik baru (Figure 2) khusus untuk error
+figure('Position', [150, 150, 800, 400]);
+
+% Menghitung seluruh error sekaligus dari array yang sudah ada
+error_array = abs(I_exact - I_numeric);
+
+% Plot grafik error
+plot(t_values, error_array, 'm-o', 'LineWidth', 1.5, 'MarkerSize', 4);
+
+% Dekorasi Grafik Error
+title('Grafik Error Absolut (Prediktor-Korektor)', 'FontSize', 14);
+xlabel('Waktu (t)', 'FontSize', 12);
+ylabel('Nilai Error Absolut', 'FontSize', 12);
+grid on;
