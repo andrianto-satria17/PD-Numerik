@@ -49,15 +49,15 @@ figure('Position', [100, 100, 800, 500]);
 hold on;
 
 % Plot Solusi Eksak (Garis tebal abu-abu)
-plot(t_values, I_exact, 'Color', [0.7 0.7 0.7], 'LineWidth', 4, 'DisplayName', 'Solusi Eksak');
+plot(t_values, I_exact, 'Color', [0.7 0.7 0.7], 'LineWidth', 4);
 
 % Plot Solusi Implisit (Garis merah solid dengan marker bulat)
-plot(t_values, I_implicit, 'r-o', 'MarkerSize', 5, 'LineWidth', 1.5, 'DisplayName', 'Metode Euler Implisit');
+plot(t_values, I_implicit, 'r-o', 'MarkerSize', 5, 'LineWidth', 1.5);
 
 % Dekorasi Grafik
 title('Metode Euler Implisit (Backward Euler)', 'FontSize', 14);
 xlabel('Waktu (t)', 'FontSize', 12);
 ylabel('Arus (I)', 'FontSize', 12);
-legend('show', 'Location', 'best');
+legend('Solusi Eksak', 'Metode Euler Implisit', 'Location', 'best');   %menuliskan legenda/petunjuk
 grid on;
 hold off;
